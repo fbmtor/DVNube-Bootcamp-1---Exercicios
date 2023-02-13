@@ -1,0 +1,26 @@
+No contexto do app para Escola Jardim São João
+
+Criarei um objeto chamado Acolhida - processo de acolher famílias visitantes que querem conhecer a escola e o espaço
+  O objeto deve conter os campos
+    Nome da criança: text
+    Nome do responsável: text
+    Telefone: text
+    Email: text
+    Data de contato: data
+    Responsável pela acolhida: text
+    Data e horário da acolhida: data
+    Estágio da acolhida: picklist -> primeiro contato; acolhida agendada; acolhida feita; criança não matriculada; criança matriculada.
+
+Criarei outro objeto chamado Alunos matriculados
+  O objeto deve conter os campos
+    Nome da criança: text
+    Nome do responsável: text
+    Telefone: text
+    Email: text
+    Idade da criança: text
+    Professor: picklist
+    Data de nascimento da criança: data
+    Mensalidade: picklist
+
+Criarei um flow que converte um registro do objeto Acolhida em um registro do objeto Alunos matriculados quando o estágio for alterado para criança matriculada
+    
