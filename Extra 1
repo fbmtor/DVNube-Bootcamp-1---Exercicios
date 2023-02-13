@@ -2,25 +2,32 @@ No contexto do app para Escola Jardim São João
 
 Criarei um objeto chamado Acolhida - processo de acolher famílias visitantes que querem conhecer a escola e o espaço
   O objeto deve conter os campos
-    Nome da criança: text
+    Nome da criança: text 
     Nome do responsável: text
-    Telefone: text
-    Email: text
+    Telefone: phone
+    Email: email
     Data de contato: data
-    Responsável pela acolhida: text
-    Data e horário da acolhida: data
+    Acolhedor: text
+    Data e horário da acolhida: data/hora
     Estágio da acolhida: picklist -> primeiro contato; acolhida agendada; acolhida feita; criança não matriculada; criança matriculada.
 
-Criarei outro objeto chamado Alunos matriculados
+Criarei outro objeto chamado Alunos
   O objeto deve conter os campos
-    Nome da criança: text
+    Aluno: text
     Nome do responsável: text
-    Telefone: text
-    Email: text
-    Idade da criança: text
-    Professor: picklist
+    Telefone: phone
+    Email: email
     Data de nascimento da criança: data
+    Idade da criança: formula
+    Professor: picklist
     Mensalidade: picklist
 
-Criarei um flow que converte um registro do objeto Acolhida em um registro do objeto Alunos matriculados quando o estágio for alterado para criança matriculada
-    
+Criarei um flow que converte um registro do objeto Acolhida em um registro do objeto Alunos quando o estágio for alterado para criança matriculada
+  Criar um record-triggered flow
+    Trigger o flow quando um registro no objeto Acolhida for atualizado
+      O registro é Estágio da acolhida
+      Quando o campo Estágio da acolhida for atualizado para criança matriculada
+    Criar um novo registro no objeto Aluno
+      Usar os campos do registro que originou o trigger para popular os campos do novo registro do objeto Aluno
+        Usar o elemento Assignment para popular uma variável com os valores do registro Acolhida para serem usados no registro Aluno
+    Deletar o registro do objeto Acolhida que originou o flow
