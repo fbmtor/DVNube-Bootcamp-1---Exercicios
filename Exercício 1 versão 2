@@ -1,0 +1,111 @@
+Exercício 1 versão 2
+
+Início
+levantar (sofá)
+andar (banheiro)
+se 'porta do banheiro' = fechada 
+  abrir (porta do banheiro)
+senão 
+  entrar (banheiro)
+fimse
+caso 'luminosidade' = escuro
+  acender (luz)
+fimcaso
+pegar (escova de dentes)
+abrir (torneira)
+  molhar (cerdas da escova de dentes)
+fechar (torneira)
+depositar (escova de dentes) -> bancada da pia  
+pegar (tubo de pasta de dentes)
+  abrir (tubo de pasta de dentes)
+  depositar (tampa do tubo de pasta de dentes) -> bancada da pia
+    pegar (escova de dentes) -> bancada da pia    
+  posicionar (cerdas da escova de dentes)
+    abaixo da 'boca do tubo de pasta de dentes'
+  apertar (tubo de pasta de dentes)
+    enquanto 'pasta de dentes' sair
+      usar 'cerdas escova de dentes'
+        recolher 'pasta de dentes' 
+          tubo de pasta de dentes
+    se 'quantidade de pasta de dentes sobre as cerdas da escova de dentes' != desejada
+      repetir (30:32)
+    fimse
+  fimapertar
+  depositar (escova de dentes) -> bancada da pia    
+  pegar (tampa do tubo de pasta de dentes) -> bancada da pia    
+    tampar (tubo da pasta de dentes)
+  depositar (tubo da pasta de dentes) -> bancada da pia    
+pegar (escova de dentes) -> bancada da pia  
+abrir (torneira)
+  molhar (pasta de dentes) -> cerdas da escova de dentes    
+fechar (torneira)
+levar (escova de dentes) -> boca
+  abrir (boca)
+  aplicar (pasta de dentes) -> dentes
+  começar (escovação)
+    se 'método de escovação próprio' = true
+      executar (método de escovação próprio)
+    senão executar o seguinte método
+      'dentes' = fechado
+        t <- tempo 'esfregar'
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          horizontal, exterior, frontais, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          horizontal, exterior, laterais, esquerdos, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          horizontal, exterior, laterais, direitos, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+      'dentes' = aberto
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          vertical, interior, frontais, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          vertical, interior, laterais, esquerdos, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+        t = 0
+        esfregar (cerdas da escova de dentes) -> dentes
+          vertical, interior, laterais, direitos, superiores, inferiores
+          enquanto 't' < 6
+          fimenquanto
+    fimse
+  afastar (escova de dentes) -> boca
+abrir (torneira)
+posicionar (escova de dentes) -> fluxo de água
+  esfregar (cerdas da escova de dentes) -> dedos 
+fechar (torneira)
+guardar (escova de dentes)
+cuspir -> pia
+abrir (torneira)
+  levar (mãos) -> fluxo de água 
+    formato = concha
+  coletar (água)
+  levar (mão) -> boca
+  abrir (boca)
+  transferir (água) -> boca
+    bochecar
+  cuspir -> pia
+  fechar (boca)
+  se 'resíduo de pasta -> boca' = true
+    repetir (85:92)
+  fimse
+fechar (pia)
+guardar (tubo de pasta de dentes)
+enxugar (boca, mãos)
+caso 'luz' = acessa
+  apagar (luz)
+sair (banheiro)
+andar (sofá)
+sentar (sofá)
+Fim
