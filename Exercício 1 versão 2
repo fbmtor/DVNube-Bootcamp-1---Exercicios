@@ -24,8 +24,9 @@ apertar (tubo de pasta de dentes)
   usar (cerdas escova de dentes)
   recolher (pasta de dentes) -> tubo de pasta de dentes
   se 'quantidade de pasta de dentes sobre as cerdas da escova de dentes' != desejada
-    repetir (30:32)
+    repetir (23:26)
   fimse
+fimapertar
 depositar (escova de dentes) -> bancada da pia    
 pegar (tampa do tubo de pasta de dentes) -> bancada da pia    
 tampar (tubo da pasta de dentes)
