@@ -1,0 +1,30 @@
+//Escreva um algoritmo em pseudocódigo para calcular o n-ésimo número da sequência de Fibonacci, usando uma abordagem recursiva. 
+//O algoritmo deve receber como entrada um número inteiro n, representando a posição do número na sequência de Fibonacci, e retornar o valor correspondente a essa posição. 
+//Certifique-se de incluir tratamento de erro para o caso em que o usuário insira um número negativo como entrada.
+
+n : inteiro
+
+funcao fibonacci(n)
+  se n = 0 entao
+    fibonacci = 0
+  senao
+    se n = 1 entao
+      fibonacci = 1
+    senao
+      se n > 1
+        fibonacci = fibonacci(n - 2) + fibonacci (n - 1)
+      fimse
+    fimse
+  fimse
+fimfuncao
+
+Início
+
+  leia (n)
+  se n < 0 entao
+    escreva ("n deve ser um valor positivo")
+  senao
+    escreva (fibonacci(n))
+  fimse
+  
+ Fim
