@@ -5,26 +5,15 @@
 n : inteiro
 
 funcao fibonacci(n)
-  se n = 0 entao
-    fibonacci = 0
-  senao
-    se n = 1 entao
-      fibonacci = 1
-    senao
-      se n > 1
-        fibonacci = fibonacci(n - 2) + fibonacci (n - 1)
-      fimse
-    fimse
+  se n < 0 entao
+    retorna "n não pode ser um valor negativo"
+  se n == 0 entao
+    retorna 0
+  se n == 1 entao
+      retorna 1
+  se n > 1
+        retorna fibonacci(n - 1) + fibonacci (n - 2)
+  fimse
+  fimse
   fimse
 fimfuncao
-
-Início
-
-  leia (n)
-  se n < 0 entao
-    escreva ("n deve ser um valor positivo")
-  senao
-    escreva (fibonacci(n))
-  fimse
-  
- Fim
