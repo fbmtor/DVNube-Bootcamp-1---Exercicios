@@ -4,16 +4,14 @@
 
 n : inteiro
 
-funcao fibonacci(n)
+funcao inteiro fibonacci(inteiro n)
   se n < 0 entao
-    retorna "n não pode ser um valor negativo"
-  se n == 0 entao
+    retorna nulo
+  senao se n == 0 entao
     retorna 0
-  se n == 1 entao
+  senao se n == 1 entao
       retorna 1
-  se n > 1
+  senao se n > 1
         retorna fibonacci(n - 1) + fibonacci (n - 2)
-  fimse
-  fimse
   fimse
 fimfuncao
