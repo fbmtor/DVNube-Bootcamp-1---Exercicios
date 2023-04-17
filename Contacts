@@ -34,4 +34,31 @@ public with sharing class Contacts {
         }
         return lastNameTemp;
     }
+    
+    public static List<Contact> createMembers2(String firstName, String lastName) { 
+        List<Contact> members = new List<Contact>();
+        List<String> accNames = new List<String>(getFamilies(lastName));
+        List<Account> accs = [SELECT Id FROM Account WHERE Name IN :accNames];
+        List<Account> accsMissing = new List<Account>();
+        if (accs.isEmpty()) {
+            for (String n : accNames) {
+                Account missing = new Account(Name = n);
+                accsMissing.add(missing);
+            }
+            insert accsMissing;
+        } else if (accs.size() != accNames.size()) {
+            for (String n : accNames) {
+                Account missing = new Account(Name = n);
+                if (!accs.contains(missing)) {
+                    accsMissing.add(missing);
+                }
+            }
+            insert accsMissing;
+        }
+        for (Account acc : accs) {
+            Contact member = new Contact(FirstName = firstName, LastName = lastName, AccountId = acc.Id); 
+            members.add(member);
+        }
+        return members;
+    }
 }
