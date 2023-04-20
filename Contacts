@@ -1,0 +1,78 @@
+public with sharing class Contacts {
+    
+    public static List<Contact> createMembers(String firstName, String lastName) { //cenário: e se lastName não tiver account?cenário 2?
+        List<Contact> members = new List<Contact>();
+        for (Account acc : [SELECT Id FROM Account WHERE Name IN :getFamilies(lastName)]) {
+            Contact member = new Contact(FirstName = firstName, LastName = lastName, AccountId = acc.Id); 
+            members.add(member);
+        }
+        return members;
+    }
+    
+    public static List<String> getFamilies(String lastName) {
+        List<String> families = new List<String>();
+        List<String> lastNames = lastName.split(' ');
+        Integer lastNamesQuantity = lastNames.size();
+        
+        for (Integer i = 0; i < lastNamesQuantity; i++) {
+            families.addAll(buildLastNames(lastNames, lastNamesQuantity, i));
+            System.debug('families' + i + ' :' + families);
+        }
+        System.debug('families final ' + families);
+        return families;
+        
+    }
+    
+    private static List<String> buildLastNames(List<String> lastNames, Integer lastNamesQuantity, Integer startingIndex) {
+        List<String> lastNameTemp = new List<String>();
+        String currentLastName = '';
+        for (Integer j = startingIndex; j < lastNamesQuantity; j++) {
+            if (j > startingIndex) {
+                currentLastName += ' ';
+            }
+            currentLastName += lastNames[j];
+            lastNameTemp.add(currentLastName);
+            System.debug('currentLastName' + ' ' + j +'.' + startingIndex + ' ' + currentLastName);
+        }
+        System.debug('lastNameTemp ' + lastNameTemp);
+        return lastNameTemp;
+        
+    }
+    
+    public static List<Contact> createMembers2(String firstName, String lastName) { 
+        List<Contact> members = new List<Contact>();
+        List<String> accNames = getFamilies(lastName);
+        List<Account> accs = [SELECT Id, Name FROM Account WHERE Name IN :accNames];//criar um mapa, chave = name, value = account
+        Map<String, Account> mapAccs = new Map<String, Account>();
+        for (Account acc : accs) {
+            mapAccs.put(acc.Name, acc);
+        }
+        List<Account> accsMissing = new List<Account>();
+        if (accs.isEmpty()) {
+            for (String n : accNames) {
+                Account missing = new Account(Name = n);
+                accsMissing.add(missing);
+            }
+        } else if (accs.size() != accNames.size()) {
+            for (String n : accNames) {
+                if (!mapAccs.keySet().contains(n)) { //sempre true, comparar o name e nao a account
+                    Account missing = new Account(Name = n);
+                    accsMissing.add(missing);
+                }
+            }
+        }
+        insert accsMissing;
+        for (Account acc : [SELECT Id FROM Account WHERE Name IN :accNames]) { //jogar accsMissing dentro de accs e evitar esse soql
+            Contact member = new Contact(FirstName = firstName, LastName = lastName, AccountId = acc.Id); 
+            members.add(member);
+        }
+        return members;
+    }
+    
+    
+    
+} /*//TODO: adicionar tratativas:
+`accounts.isEmpty()` : criar as famílias
+`families.size() != accounts.size()` : criar as famílias que não existem. 
+exemplo: "silva souza teixeira"
+soql de accounts só retornou silva e souza. sacou?*/
